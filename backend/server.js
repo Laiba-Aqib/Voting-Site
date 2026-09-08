@@ -5,7 +5,13 @@ require("dotenv").config();
 const db = require("./db");
 
 const app = express();
-app.use(cors());
+//app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:3001",
+        "https://voting-site-mu.vercel.app"
+    ]
+}));
 app.use(body_parser.json());
 
 app.get('/',(req,res)=>{
