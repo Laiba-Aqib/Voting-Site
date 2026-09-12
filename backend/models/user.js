@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
     },
     email:{
         type:String,   //as its a voting app and some people from rural areas might not have email so it should'nt stop them from voting
-        unique: true
+        unique:true,
+        sparse:true
     },
     password:{
         type:String,

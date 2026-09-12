@@ -8,7 +8,11 @@ const Candidate = require("../models/candidate");
 
 router.post('/signup',async (req,res)=>{
    try{
-    const data = req.body;
+    // const data = req.body;
+    const data = {
+    ...req.body,
+    email: req.body.email?.trim() || undefined
+};
     const newUser = new User(data);
     const admin = await User.findOne({role:"admin"});
     if(!admin || newUser.role === "voter"){
@@ -29,7 +33,7 @@ router.post('/signup',async (req,res)=>{
     }
    }catch(err){
     console.log("Voter was not saved!",err);
-    res.status(401).json({error: "Internl server error"});
+    res.status(401).json({error: "Internel server error"});
    }
 });
 
